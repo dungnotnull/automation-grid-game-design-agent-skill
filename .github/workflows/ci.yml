@@ -1,0 +1,50 @@
+name: CI
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.9", "3.10", "3.11", "3.12"]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install pytest pytest-cov
+
+      - name: Run pytest suite
+        run: python -m pytest tests/ tools/test_knowledge_updater.py -q
+
+      - name: Run 8-File Contract validator
+        run: python tools/validate_project.py
+
+      - name: Run scenario validator
+        run: python tools/run_test_scenarios.py
+
+      - name: Run skill-definitions validator
+        run: python scripts/validate_skills.py
+
+      - name: Local setup smoke test
+        run: python scripts/setup_local.py
+
+      - name: Harness smoke run (offline, deterministic)
+        run: python scripts/run_harness.py "Optimize my Factorio electronic-circuit line for 10/s" --no-report
+
+      - name: Knowledge updater offline smoke test
+        run: python tools/knowledge_updater.py --dry-run --news-only --offline --keywords smoke

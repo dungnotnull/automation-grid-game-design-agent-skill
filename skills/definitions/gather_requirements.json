@@ -1,0 +1,36 @@
+{
+  "name": "gather_requirements",
+  "description": "Clarify game, object, target rate, scope, timeframe, available inputs, target audience, and language before any data fetching.",
+  "step": 1,
+  "prompt_template": "references/prompt_templates/gather_requirements.md",
+  "tools": ["list_recipes"],
+  "gates": ["U4"],
+  "inputs_schema": {
+    "type": "object",
+    "properties": {
+      "query": {"type": "string", "minLength": 1}
+    },
+    "required": ["query"],
+    "additionalProperties": false
+  },
+  "outputs_schema": {
+    "type": "object",
+    "properties": {
+      "game": {"type": "string", "enum": ["factorio", "satisfactory", "dsp"]},
+      "object": {"type": "string"},
+      "target_item": {"type": "string"},
+      "target_rate": {"type": "number", "minimum": 0},
+      "target_rate_unit": {"type": "string"},
+      "scope": {"type": "string"},
+      "timeframe": {"type": "string"},
+      "available_inputs": {"type": "string"},
+      "target_audience": {"type": "string"},
+      "language": {"type": "string", "enum": ["en", "vi"]},
+      "analysis_type": {"type": "string"},
+      "assumptions": {"type": "array", "items": {"type": "string"}}
+    },
+    "required": ["game", "target_item", "target_rate", "language"],
+    "additionalProperties": true
+  },
+  "metadata": {"sub_skill_md": "skills/sub-gather-requirements.md"}
+}

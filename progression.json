@@ -1,0 +1,44 @@
+{
+  "skill_id": 198,
+  "skill_name": "automation-grid-game-design",
+  "tagline": "Automation Grid System Design & Optimization in Factory/Automation Games",
+  "domain": "Automation-Game Grid Logistics & Throughput Optimization",
+  "version": "2.0.0",
+  "status": "PRODUCTION READY",
+  "last_updated": "2026-07-20",
+  "phases": [
+    {"phase": 0, "name": "Research & Skill Architecture", "completion": 100, "status": "complete"},
+    {"phase": 1, "name": "Core Sub-Skills", "completion": 100, "status": "complete"},
+    {"phase": 2, "name": "Main Harness + Quality Gates", "completion": 100, "status": "complete"},
+    {"phase": 3, "name": "SECOND-KNOWLEDGE-BRAIN Pipeline", "completion": 100, "status": "complete"},
+    {"phase": 4, "name": "Testing & Validation", "completion": 100, "status": "complete"},
+    {"phase": 5, "name": "Integration & Polish", "completion": 100, "status": "complete"},
+    {"phase": 6, "name": "Modular Agent Framework", "completion": 100, "status": "complete"},
+    {"phase": 7, "name": "Skill Registry Data + References + Assets + Schemas", "completion": 100, "status": "complete"},
+    {"phase": 8, "name": "Type-Safe Config + Scripts", "completion": 100, "status": "complete"},
+    {"phase": 9, "name": "Production Hardening & Docs", "completion": 100, "status": "complete"}
+  ],
+  "overall_completion": 100,
+  "deliverables": {
+    "engine_package": "automation_grid/ (config, engine, recipes, knowledge, logging_utils)",
+    "agent_package": "agent/ (errors, events, schemas, state, context, hooks, tools, registry, router, llm, skill_handlers, runner)",
+    "config_package": "config/ (settings, default.json)",
+    "skills": [
+      "main.md", "sub-gather-requirements.md", "sub-evidence-collector.md",
+      "sub-core-analysis.md", "sub-knowledge-updater.md", "sub-advisor.md",
+      "definitions/*.json (6 machine-readable specs)"
+    ],
+    "references": ["prompt_templates/*.md (6)", "domain_methods.md"],
+    "assets": ["schemas/*.json (5)", "diagrams/*.mmd (2)", "recipes.json"],
+    "scripts": ["run_harness.py", "validate_skills.py", "setup_local.py", "seed_recipes.py", "ingest_knowledge.py"],
+    "tools": ["knowledge_updater.py", "validate_project.py", "run_test_scenarios.py", "test_knowledge_updater.py"],
+    "tests": ["conftest.py", "test_automation_engine.py", "test_crawl_pipeline.py", "test_validate_project.py", "test_agent_framework.py"],
+    "docs": ["CLAUDE.md", "PROJECT-detail.md", "PROJECT-DEVELOPMENT-PHASE-TRACKING.md", "README.md", "SKILL.md", "SECOND-KNOWLEDGE-BRAIN.md", "DEVELOPMENT-TRACKING.md", "LICENSE", "CONTRIBUTING.md", "CODE_OF_CONDUCT.md"]
+  },
+  "tests": {
+    "pytest": "93 passed",
+    "validate_project": "96/96 checks passed",
+    "run_test_scenarios": "115/115 checks passed",
+    "validate_skills": "92/92 checks passed"
+  }
+}

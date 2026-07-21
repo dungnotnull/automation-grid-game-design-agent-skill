@@ -1,0 +1,23 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "requirements.schema.json",
+  "title": "Requirements",
+  "description": "Structured requirements emitted by the gather_requirements skill.",
+  "type": "object",
+  "required": ["game", "target_item", "target_rate", "language"],
+  "additionalProperties": true,
+  "properties": {
+    "game": {"type": "string", "enum": ["factorio", "satisfactory", "dsp"]},
+    "object": {"type": "string"},
+    "target_item": {"type": "string", "minLength": 1},
+    "target_rate": {"type": "number", "minimum": 0},
+    "target_rate_unit": {"type": "string"},
+    "scope": {"type": "string"},
+    "timeframe": {"type": "string"},
+    "available_inputs": {"type": "string"},
+    "target_audience": {"type": "string"},
+    "language": {"type": "string", "enum": ["en", "vi"]},
+    "analysis_type": {"type": "string"},
+    "assumptions": {"type": "array", "items": {"type": "string"}}
+  }
+}

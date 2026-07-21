@@ -1,0 +1,21 @@
+{
+  "name": "quality_gate",
+  "description": "Verify all universal gates (U1-U6) and domain gates (G1-G4) against the assembled state; flag any that cannot pass.",
+  "step": 6,
+  "prompt_template": "references/prompt_templates/quality_gate.md",
+  "tools": [],
+  "gates": ["U1", "U2", "U3", "U4", "U5", "U6", "G1", "G2", "G3", "G4"],
+  "inputs_schema": {"type": "object", "additionalProperties": true},
+  "outputs_schema": {
+    "type": "object",
+    "properties": {
+      "gates": {"type": "array"},
+      "passed": {"type": "integer", "minimum": 0},
+      "total": {"type": "integer", "minimum": 0},
+      "all_passed": {"type": "boolean"}
+    },
+    "required": ["gates", "passed", "total", "all_passed"],
+    "additionalProperties": true
+  },
+  "metadata": {"sub_skill_md": "skills/main.md"}
+}

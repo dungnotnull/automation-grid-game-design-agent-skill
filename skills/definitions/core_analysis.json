@@ -1,0 +1,36 @@
+{
+  "name": "core_analysis",
+  "description": "Compute ratios, throughput/bottlenecks (Little's Law), belt/logistics balancing, power/pollution/space tradeoffs, and best/base/worst scenarios (engine-verified).",
+  "step": 3,
+  "prompt_template": "references/prompt_templates/core_analysis.md",
+  "tools": ["solve_grid", "solve_ratios", "bottleneck_analysis", "balancer_design", "little_law", "belts_required", "power_pollution_summary", "machine_config"],
+  "gates": ["G1", "G2", "G3", "G4"],
+  "inputs_schema": {
+    "type": "object",
+    "properties": {
+      "game": {"type": "string", "enum": ["factorio", "satisfactory", "dsp"]},
+      "target_item": {"type": "string"},
+      "target_rate": {"type": "number", "minimum": 0},
+      "data_available": {"type": "boolean"}
+    },
+    "required": ["game", "target_item", "target_rate"],
+    "additionalProperties": false
+  },
+  "outputs_schema": {
+    "type": "object",
+    "properties": {
+      "game": {"type": "string"},
+      "target_item": {"type": "string"},
+      "target_rate": {"type": "number"},
+      "stages": {"type": "array"},
+      "bottleneck": {"type": "object"},
+      "tradeoffs": {"type": "object"},
+      "scenarios": {"type": "object"},
+      "engine_verdict": {"type": "string"},
+      "notes": {"type": "array"}
+    },
+    "required": ["stages", "bottleneck", "tradeoffs", "engine_verdict"],
+    "additionalProperties": true
+  },
+  "metadata": {"sub_skill_md": "skills/sub-core-analysis.md"}
+}

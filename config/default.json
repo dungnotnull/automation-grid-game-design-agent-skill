@@ -1,0 +1,32 @@
+{
+  "version": "2.0.0",
+  "domain": "Automation-Game Grid Logistics & Throughput Optimization",
+  "language": "en",
+  "log_level": "INFO",
+  "token_budget": 8192,
+  "reserve_output_tokens": 1024,
+  "context_trim_droppable_only": true,
+  "llm": {
+    "provider": "deterministic",
+    "model": "gpt-4o-mini",
+    "api_base": "https://api.openai.com/v1",
+    "temperature": 0.2,
+    "max_tokens": 1024,
+    "timeout_seconds": 60.0,
+    "max_retries": 3,
+    "base_retry_delay_seconds": 0.5
+  },
+  "feature_flags": {
+    "use_deterministic_provider": true,
+    "enable_state_snapshots": false,
+    "enable_knowledge_crawl": true,
+    "strict_gates": true,
+    "emit_events": true
+  },
+  "knowledge_crawl": {
+    "schedule_academic": "0 8 * * 1",
+    "schedule_news": "0 7 * * *",
+    "max_new_entries_per_run": 20,
+    "offline": false
+  }
+}

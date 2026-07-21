@@ -1,0 +1,16 @@
+%%{init: {'theme':'neutral'}}%%
+flowchart TD
+    U([User Query]) --> LANG[Pre-Flight: Language Detection]
+    LANG --> ROUTER[ChainOfThoughtRouter: intent + reasoning]
+    ROUTER --> S1[1. gather_requirements]
+    S1 -->|requirements| S2[2. evidence_collector]
+    S2 -->|evidence bundle| S3[3. core_analysis]
+    S3 -->|engine: solve_grid| ENG[(automation_grid engine)]
+    ENG -->|ratios/throughput/verdict| S3
+    S3 -->|analysis| S4[4. knowledge_updater]
+    S4 -->|citations + gaps| KB[(SECOND-KNOWLEDGE-BRAIN)]
+    S4 --> S5[5. advisor]
+    S5 -->|verdict + disclosure| S6[6. quality_gate]
+    S6 -->|U1-U6 + G1-G4| REPORT([Final Report])
+    S6 -.->|gap flags| CRAWL[tools/knowledge_updater.py]
+    CRAWL -.->|append| KB

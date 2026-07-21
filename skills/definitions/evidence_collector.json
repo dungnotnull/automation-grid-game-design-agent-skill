@@ -1,0 +1,33 @@
+{
+  "name": "evidence_collector",
+  "description": "Fetch authoritative recipe/machine/belt/module tables + method references + recent developments for the confirmed game.",
+  "step": 2,
+  "prompt_template": "references/prompt_templates/evidence_collector.md",
+  "tools": ["list_recipes", "search_brain"],
+  "gates": ["U1", "U3"],
+  "inputs_schema": {
+    "type": "object",
+    "properties": {
+      "game": {"type": "string", "enum": ["factorio", "satisfactory", "dsp"]},
+      "target_item": {"type": "string"}
+    },
+    "required": ["game"],
+    "additionalProperties": false
+  },
+  "outputs_schema": {
+    "type": "object",
+    "properties": {
+      "game": {"type": "string"},
+      "target_item": {"type": "string"},
+      "current_data": {"type": "object"},
+      "authoritative_docs": {"type": "array"},
+      "recent_news": {"type": "array"},
+      "reference_benchmarks": {"type": "string"},
+      "degradation_level": {"type": "integer", "minimum": 0, "maximum": 4},
+      "limitations": {"type": "array"}
+    },
+    "required": ["game", "current_data", "authoritative_docs", "degradation_level"],
+    "additionalProperties": true
+  },
+  "metadata": {"sub_skill_md": "skills/sub-evidence-collector.md"}
+}

@@ -1,0 +1,34 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "knowledge.schema.json",
+  "title": "KnowledgeEvidence",
+  "description": "Academic evidence + gap flags emitted by the knowledge_updater skill.",
+  "type": "object",
+  "required": ["citations", "gaps", "coverage"],
+  "additionalProperties": true,
+  "properties": {
+    "citations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "title": {"type": "string"},
+          "authors": {"type": "string"},
+          "year": {"type": "string"},
+          "venue": {"type": "string"},
+          "doi_or_url": {"type": "string"},
+          "tier": {"type": "string"}
+        }
+      }
+    },
+    "gaps": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["topic", "query"],
+        "properties": {"topic": {"type": "string"}, "query": {"type": "string"}}
+      }
+    },
+    "coverage": {"type": "string", "enum": ["Strong", "Moderate", "Weak"]}
+  }
+}

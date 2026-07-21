@@ -1,0 +1,8 @@
+# Runtime dependencies for the automation_grid engine + crawl pipeline.
+requests>=2.31.0
+python-dateutil>=2.8.2
+feedparser>=6.0.10
+
+# Development / testing (also installable via: pip install -e ".[dev]")
+pytest>=7.0
+pytest-cov>=4.0

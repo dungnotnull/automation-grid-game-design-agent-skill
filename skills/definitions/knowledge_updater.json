@@ -1,0 +1,27 @@
+{
+  "name": "knowledge_updater",
+  "description": "Query SECOND-KNOWLEDGE-BRAIN.md for tier-labeled academic citations and flag crawl gaps.",
+  "step": 4,
+  "prompt_template": "references/prompt_templates/knowledge_updater.md",
+  "tools": ["search_brain", "append_knowledge"],
+  "gates": ["U1", "U3"],
+  "inputs_schema": {
+    "type": "object",
+    "properties": {
+      "keywords": {"type": "array", "items": {"type": "string"}, "minItems": 1}
+    },
+    "required": ["keywords"],
+    "additionalProperties": false
+  },
+  "outputs_schema": {
+    "type": "object",
+    "properties": {
+      "citations": {"type": "array"},
+      "gaps": {"type": "array"},
+      "coverage": {"type": "string", "enum": ["Strong", "Moderate", "Weak"]}
+    },
+    "required": ["citations", "gaps", "coverage"],
+    "additionalProperties": true
+  },
+  "metadata": {"sub_skill_md": "skills/sub-knowledge-updater.md"}
+}

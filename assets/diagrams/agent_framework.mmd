@@ -1,0 +1,20 @@
+%%{init: {'theme':'neutral'}}%%
+flowchart LR
+    subgraph Runner[HarnessRunner]
+        CTX[ContextWindow + TokenCounter]
+        HK[HookManager]
+        BUS[EventBus]
+    end
+    RUN[scripts/run_harness.py] --> Runner
+    Runner --> RR[ChainOfThoughtRouter]
+    Runner --> SR[SkillRegistry]
+    Runner --> TR[ToolRegistry]
+    Runner --> LLM[LLMProvider]
+    SR -->|load| DEF[/skills/definitions/*.json/]
+    SR -->|bind| SH[skill_handlers]
+    TR -->|invoke| ENG[(automation_grid engine)]
+    LLM -->|deterministic| ENG
+    LLM -->|optional HTTP| API[OpenAI-compatible API]
+    HK -->|lifecycle| LOG[structured logging]
+    HK -->|state sync| SNAP[/state snapshots/]
+    BUS -->|events| MET[metrics tap]

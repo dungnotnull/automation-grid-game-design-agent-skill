@@ -1,0 +1,39 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "verdict.schema.json",
+  "title": "AdvisorVerdict",
+  "description": "Risk-disclosed conclusion emitted by the advisor skill.",
+  "type": "object",
+  "required": ["verdict", "key_risks", "evidence_chain", "remediation", "disclosure"],
+  "additionalProperties": true,
+  "properties": {
+    "verdict": {"type": "string", "enum": ["Optimized Layout", "Conditional (bottleneck)", "Infeasible Target", "Inconclusive"]},
+    "scenarios": {"type": "object"},
+    "key_risks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["risk", "probability", "impact"],
+        "properties": {
+          "risk": {"type": "string"},
+          "probability": {"type": "string", "enum": ["L", "M", "H"]},
+          "impact": {"type": "string", "enum": ["L", "M", "H"]}
+        }
+      }
+    },
+    "evidence_chain": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["claim", "source", "tier"],
+        "properties": {
+          "claim": {"type": "string"},
+          "source": {"type": "string"},
+          "tier": {"type": "string"}
+        }
+      }
+    },
+    "remediation": {"type": "array", "items": {"type": "string"}},
+    "disclosure": {"type": "string", "minLength": 1}
+  }
+}

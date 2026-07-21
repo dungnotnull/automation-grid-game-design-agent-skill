@@ -1,0 +1,49 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "analysis.schema.json",
+  "title": "CoreAnalysis",
+  "description": "Structured analysis emitted by the core_analysis skill (engine-verified).",
+  "type": "object",
+  "required": ["stages", "bottleneck", "tradeoffs", "engine_verdict"],
+  "additionalProperties": true,
+  "properties": {
+    "game": {"type": "string"},
+    "target_item": {"type": "string"},
+    "target_rate": {"type": "number", "minimum": 0},
+    "stages": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["stage", "machine", "count_rounded", "utilization"],
+        "properties": {
+          "stage": {"type": "string"},
+          "machine": {"type": "string"},
+          "count": {"type": "number"},
+          "count_rounded": {"type": "integer", "minimum": 1},
+          "output_item": {"type": "string"},
+          "target_rate": {"type": "number"},
+          "utilization": {"type": "number", "minimum": 0, "maximum": 1.0001},
+          "power_kw": {"type": "number"},
+          "pollution_per_min": {"type": "number"},
+          "input_rates": {"type": "object"},
+          "belts_in": {"type": "object"},
+          "belts_out": {"type": "object"}
+        }
+      }
+    },
+    "bottleneck": {
+      "type": "object",
+      "properties": {
+        "stage": {"type": ["string", "null"]},
+        "utilization": {"type": "number"},
+        "throughput_cap": {"type": "number"},
+        "buffer_size_seconds": {"type": "number"},
+        "recommendations": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "tradeoffs": {"type": "object"},
+    "scenarios": {"type": "object"},
+    "engine_verdict": {"type": "string"},
+    "notes": {"type": "array", "items": {"type": "string"}}
+  }
+}

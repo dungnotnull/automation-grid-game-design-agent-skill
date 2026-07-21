@@ -1,0 +1,33 @@
+{
+  "name": "advisor",
+  "description": "Synthesize all prior analysis into a risk-disclosed conclusion with a full evidence chain and recommended actions.",
+  "step": 5,
+  "prompt_template": "references/prompt_templates/advisor.md",
+  "tools": ["classify_verdict", "valid_verdicts"],
+  "gates": ["U2", "U6"],
+  "inputs_schema": {
+    "type": "object",
+    "properties": {
+      "analysis": {"type": "object"},
+      "knowledge": {"type": "object"},
+      "degradation_level": {"type": "integer", "minimum": 0, "maximum": 4},
+      "data_available": {"type": "boolean"}
+    },
+    "required": ["analysis"],
+    "additionalProperties": false
+  },
+  "outputs_schema": {
+    "type": "object",
+    "properties": {
+      "verdict": {"type": "string", "enum": ["Optimized Layout", "Conditional (bottleneck)", "Infeasible Target", "Inconclusive"]},
+      "scenarios": {"type": "object"},
+      "key_risks": {"type": "array"},
+      "evidence_chain": {"type": "array"},
+      "remediation": {"type": "array"},
+      "disclosure": {"type": "string"}
+    },
+    "required": ["verdict", "key_risks", "evidence_chain", "remediation", "disclosure"],
+    "additionalProperties": true
+  },
+  "metadata": {"sub_skill_md": "skills/sub-advisor.md"}
+}

@@ -1,0 +1,60 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "automation-grid-game-design"
+version = "2.0.0"
+description = "Automation Grid System Design & Optimization in Factory/Automation Games - evidence-backed analysis harness, computational engine, and modular agent framework."
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+authors = [{ name = "automation-grid-game-design contributors" }]
+keywords = ["factorio", "satisfactory", "automation-game", "throughput", "bottleneck", "little-law", "belt-balancer", "recipe-graph", "agent-framework", "skill-registry", "claude-skill"]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Games/Entertainment",
+    "Topic :: Scientific/Engineering",
+]
+dependencies = [
+    "requests>=2.31.0",
+    "python-dateutil>=2.8.2",
+    "feedparser>=6.0.10",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0",
+    "pytest-cov>=4.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/automation-grid-game-design/automation-grid-game-design"
+Issues = "https://github.com/automation-grid-game-design/automation-grid-game-design/issues"
+
+[project.scripts]
+automation-grid-knowledge = "tools.knowledge_updater:main"
+automation-grid-validate = "tools.validate_project:main"
+automation-grid-test = "tools.run_test_scenarios:main"
+automation-grid-run = "scripts.run_harness:main"
+
+[tool.setuptools]
+packages = ["automation_grid", "agent", "config", "tools", "scripts"]
+
+[tool.pytest.ini_options]
+minversion = "7.0"
+testpaths = ["tests", "tools"]
+addopts = "-ra -q"
+filterwarnings = ["error::UserWarning"]
+
+[tool.coverage.run]
+source = ["automation_grid", "agent", "config"]
